@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+        <record id="view_backup_config_form" model="ir.ui.view">
+            <field name="name">db.backup_dropbox.form</field>
+            <field name="model">db.backup_dropbox</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Back-up view">
+                    <sheet>
+                    <group col="4" colspan="4">
+                        <separator col="2" string="Configuration de sauvegarde"/>
+                    </group>
+                    <group name="configuration">
+                        <field name="host" colspan="2"/>
+                        <field name="name"/>
+                        <field name="port"/>
+                        <field name="folder"/>
+                        <field name="dropbox_access_token"/>
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_backup_config_tree" model="ir.ui.view">
+            <field name="name">db.backup_dropbox.tree</field>
+            <field name="model">db.backup_dropbox</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Sauvegardes">
+                    <field name='host'/>
+                    <field name='port'/>
+                    <field name='name'/>
+                    <field name='folder'/>
+                    <field name="dropbox_access_token"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_backup" model="ir.actions.act_window">
+            <field name="name">Sauvegardes de BD</field>
+            <field name="res_model">db.backup_dropbox</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_backup_config_tree"/>
+        </record>
+        <menuitem action="action_backup" id="dropbox_backup_conf_menu"/>
+    </data>
+</odoo>
